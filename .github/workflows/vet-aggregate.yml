@@ -1,0 +1,39 @@
+# This workflow runs daily to aggregate the audits from other repositories
+# in `sources.list` and updates the `audits.toml` file.
+name: vet-aggregate
+on:
+  schedule:
+    # Once a day at midnight UTC
+    - cron:  '0 0 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  aggregate:
+    name: Aggregate Dependencies
+    runs-on: ubuntu-latest
+    env:
+      CARGO_VET_VERSION: 0.10.1
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install Rust
+      run: rustup update stable && rustup default stable
+    - uses: actions/cache@v4
+      with:
+        path: ${{ runner.tool_cache }}/cargo-vet
+        key: cargo-vet-bin-${{ env.CARGO_VET_VERSION }}
+    - name: Add the tool cache directory to the search path
+      run: echo "${{ runner.tool_cache }}/cargo-vet/bin" >> $GITHUB_PATH
+    - name: Ensure that the tool cache is populated with the cargo-vet binary
+      run: cargo install --root ${{ runner.tool_cache }}/cargo-vet --version ${{ env.CARGO_VET_VERSION }} cargo-vet
+    - name: Invoke cargo-vet aggregate
+      run: cargo vet aggregate aggregated-audits/sources.list --output-file aggregated-audits/aggregated-audits.toml
+    - name: Commit changes (if any)
+      run: |
+        git config --global user.name "cargo-vet[bot]"
+        git config --global user.email "cargo-vet-aggregate@invalid"
+        git add aggregated-audits/aggregated-audits.toml
+        git commit -m "Aggregate new audits" || true
+    - name: Push changes (if any)
+      run: git push origin main
