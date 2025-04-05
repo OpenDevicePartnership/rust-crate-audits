@@ -5,13 +5,21 @@ on:
   schedule:
     # Once a day at midnight UTC
     - cron:  '0 0 * * *'
+  push:
+    branches: [main]
+  pull_request:
+# If new code is pushed to a PR branch, then cancel in progress workflows for that PR. Ensures that
+# we don't waste CI time, and returns results quicker https://github.com/jonhoo/rust-ci-conf/pull/5
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
 
 permissions:
   contents: write
 
 jobs:
   aggregate:
-    name: Aggregate Dependencies
+    name: Aggregate Audits
     runs-on: ubuntu-latest
     env:
       CARGO_VET_VERSION: 0.10.1
