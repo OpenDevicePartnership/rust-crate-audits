@@ -2,6 +2,7 @@
 # in `sources.list` and updates the `audits.toml` file.
 name: vet-aggregate
 on:
+  workflow_dispatch:
   schedule:
     # Once a day at midnight UTC
     - cron:  '0 0 * * *'
