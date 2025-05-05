@@ -1,11 +1,8 @@
 # ODP top level audits
-# https://raw.githubusercontent.com/OpenDevicePartnership/rust-crate-audits/refs/heads/main/audits.toml
+https://raw.githubusercontent.com/OpenDevicePartnership/rust-crate-audits/refs/heads/main/audits.toml
 
 # Embassy-imxrt
 https://raw.githubusercontent.com/OpenDevicePartnership/embassy-imxrt/refs/heads/main/supply-chain/audits.toml
 
 # Embedded-services
 https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml
-
-# Uefi-dxe-core
-# https://raw.githubusercontent.com/OpenDevicePartnership/uefi-dxi-core/refs/heads/main/supply-chain/audits.toml
