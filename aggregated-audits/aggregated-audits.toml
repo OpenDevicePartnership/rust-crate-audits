@@ -13,6 +13,13 @@ version = "0.4.0"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.mimxrt633s-pac]]
+who = "Felipe Balbi <febalbi@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "0.4.1"
+notes = "New version of mimxrt633s-pac merely introduces safe enum variants for IRULESTAT register. No new unsafe blocks are introduced."
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embassy-imxrt/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.mimxrt633s-pac]]
 who = "Robert Zieba <robertzieba@microsoft.com>"
 criteria = "safe-to-deploy"
 version = "0.4.1"
