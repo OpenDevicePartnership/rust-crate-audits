@@ -1,4 +1,18 @@
 
+[[audits.embedded-batteries]]
+who = "Felipe Balbi <febalbi@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "0.1.0"
+notes = "ODP crates are always trusted."
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.embedded-batteries-async]]
+who = "Felipe Balbi <febalbi@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "0.1.0"
+notes = "ODP crates are always trusted."
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
+
 [[audits.half]]
 who = "Robert Zieba <robertzieba@microsoft.com>"
 criteria = "safe-to-deploy"
