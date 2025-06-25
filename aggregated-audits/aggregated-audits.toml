@@ -5,10 +5,28 @@ criteria = "safe-to-run"
 version = "0.24.2"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
 
+[[audits.aligned]]
+who = "jerrysxie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "0.4.2"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.as-slice]]
+who = "jerrysxie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "0.2.1"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
+
 [[audits.backtrace]]
 who = "Robert Zieba <robertzieba@microsoft.com>"
 criteria = "safe-to-run"
 version = "0.3.75"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.block-device-driver]]
+who = "jerrysxie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "0.2.0"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.defmt-rtt]]
@@ -43,6 +61,12 @@ who = "Robert Zieba <robertzieba@microsoft.com>"
 criteria = "safe-to-deploy"
 delta = "2.5.0 -> 2.6.0"
 notes = "Big change seems to be a change in the repo URL, but both the old and new URL resolve to the same place so it looks like the author is still in control."
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.indexmap]]
+who = "jerrysxie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "2.9.0"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.itertools]]
@@ -107,6 +131,24 @@ criteria = "safe-to-run"
 version = "2.5.0"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
 
+[[audits.toml]]
+who = "jerrysxie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "0.8.22"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.toml_datetime]]
+who = "jerrysxie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "0.6.9"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.toml_edit]]
+who = "jerrysxie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "0.22.26"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
+
 [[audits.windows-targets]]
 who = "Robert Zieba <robertzieba@microsoft.com>"
 criteria = "safe-to-run"
@@ -165,6 +207,12 @@ aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embed
 who = "Robert Zieba <robertzieba@microsoft.com>"
 criteria = "safe-to-run"
 version = "0.52.6"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.winnow]]
+who = "jerrysxie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "0.7.10"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
 
 [[trusted.anyhow]]
