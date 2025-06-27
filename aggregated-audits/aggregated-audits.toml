@@ -119,6 +119,12 @@ criteria = "safe-to-run"
 version = "0.36.7"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
 
+[[audits.serde_spanned]]
+who = "jerrysxie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "0.6.8"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
+
 [[audits.tokio]]
 who = "Robert Zieba <robertzieba@microsoft.com>"
 criteria = "safe-to-run"
