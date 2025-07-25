@@ -151,6 +151,12 @@ criteria = "safe-to-run"
 version = "2.1.1"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
 
+[[audits.static_cell]]
+who = "jerrysxie <jerryxie@microsoft.com>"
+criteria = "safe-to-run"
+delta = "2.1.0 -> 2.1.1"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embassy-imxrt/refs/heads/main/supply-chain/audits.toml"
+
 [[audits.tokio]]
 who = "Robert Zieba <robertzieba@microsoft.com>"
 criteria = "safe-to-run"
