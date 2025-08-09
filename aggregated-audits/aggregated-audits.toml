@@ -56,6 +56,13 @@ version = "0.2.0"
 notes = "ODP crates are always trusted."
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
 
+[[audits.embedded-batteries]]
+who = "Matteo Tullo <matteotullo@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "0.2.1"
+notes = "ODP crates are always trusted."
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
+
 [[audits.embedded-batteries-async]]
 who = "Felipe Balbi <febalbi@microsoft.com>"
 criteria = "safe-to-deploy"
@@ -67,6 +74,13 @@ aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embed
 who = "Matteo Tullo <matteotullo@microsoft.com>"
 criteria = "safe-to-deploy"
 version = "0.2.0"
+notes = "ODP crates are always trusted."
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.embedded-batteries-async]]
+who = "Matteo Tullo <matteotullo@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "0.2.1"
 notes = "ODP crates are always trusted."
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
 
@@ -287,6 +301,18 @@ aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embed
 who = "jerrysxie <jerryxie@microsoft.com>"
 criteria = "safe-to-deploy"
 version = "0.7.10"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.zerocopy]]
+who = "Matteo Tullo <matteotullo@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "0.8.26"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.zerocopy-derive]]
+who = "Matteo Tullo <matteotullo@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "0.8.26"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
 
 [[trusted.anyhow]]
