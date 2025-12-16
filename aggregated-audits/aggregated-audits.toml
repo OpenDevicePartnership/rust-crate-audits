@@ -330,6 +330,12 @@ criteria = "safe-to-deploy"
 version = "1.0.4"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
 
+[[audits.rand_core]]
+who = "Felipe Balbi <febalbi@microsoft.com>"
+criteria = "safe-to-deploy"
+delta = "0.6.4 -> 0.9.3"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embassy-imxrt/refs/heads/main/supply-chain/audits.toml"
+
 [[audits.regex]]
 who = "Billy Price <williamp@microsoft.com>"
 criteria = "safe-to-run"
