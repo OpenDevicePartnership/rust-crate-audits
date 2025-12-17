@@ -300,11 +300,23 @@ criteria = "safe-to-deploy"
 version = "0.7.4"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
 
+[[audits.num_enum]]
+who = "Billy Price <williamp@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "0.7.5"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embassy-imxrt/refs/heads/main/supply-chain/audits.toml"
+
 [[audits.num_enum_derive]]
 who = "Matteo Tullo <matteotullo@microsoft.com>"
 criteria = "safe-to-deploy"
 version = "0.7.4"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.num_enum_derive]]
+who = "Billy Price <williamp@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "0.7.5"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embassy-imxrt/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.object]]
 who = "Robert Zieba <robertzieba@microsoft.com>"
@@ -359,6 +371,12 @@ who = "Jerry Xie <jerryxie@microsoft.com>"
 criteria = "safe-to-deploy"
 version = "0.6.1"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.rustversion]]
+who = "Billy Price <williamp@microsoft.com>"
+criteria = "safe-to-deploy"
+delta = "1.0.20 -> 1.0.22"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embassy-imxrt/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.semver]]
 who = "Billy Price <williamp@microsoft.com>"
