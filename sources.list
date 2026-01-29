@@ -1,0 +1,11 @@
+https://raw.githubusercontent.com/OpenDevicePartnership/embassy-imxrt/refs/heads/main/supply-chain/audits.toml
+https://raw.githubusercontent.com/OpenDevicePartnership/embedded-mcu/refs/heads/main/supply-chain/audits.toml
+https://raw.githubusercontent.com/OpenDevicePartnership/embedded-power-sequence/refs/heads/main/supply-chain/audits.toml
+https://raw.githubusercontent.com/OpenDevicePartnership/embedded-sensors/refs/heads/main/supply-chain/audits.toml
+https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml
+https://raw.githubusercontent.com/OpenDevicePartnership/embedded-usb-pd/refs/heads/main/supply-chain/audits.toml
+https://raw.githubusercontent.com/OpenDevicePartnership/haf-ec-service/refs/heads/main/supply-chain/audits.toml
+https://raw.githubusercontent.com/OpenDevicePartnership/mcxa-pac/refs/heads/main/supply-chain/audits.toml
+https://raw.githubusercontent.com/OpenDevicePartnership/npcx490m-pac/refs/heads/main/supply-chain/audits.toml
+https://raw.githubusercontent.com/OpenDevicePartnership/patina/refs/heads/main/supply-chain/audits.toml
+https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml

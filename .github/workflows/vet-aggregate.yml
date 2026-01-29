@@ -29,12 +29,12 @@ jobs:
     - name: Ensure that the tool cache is populated with the cargo-vet binary
       run: cargo install --root ${{ runner.tool_cache }}/cargo-vet --version ${{ env.CARGO_VET_VERSION }} cargo-vet
     - name: Invoke cargo-vet aggregate
-      run: cargo vet aggregate aggregated-audits/sources.list --output-file aggregated-audits/aggregated-audits.toml
+      run: cargo vet aggregate sources.list --output-file audits.toml
     - name: Commit changes (if any)
       run: |
         git config --global user.name "cargo-vet[bot]"
         git config --global user.email "cargo-vet-aggregate@invalid"
-        git add aggregated-audits/aggregated-audits.toml
+        git add audits.toml
         git commit -m "Aggregate new audits" || true
     - name: Push changes (if any)
       run: git push origin main
