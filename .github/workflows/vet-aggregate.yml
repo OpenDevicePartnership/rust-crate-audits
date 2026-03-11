@@ -50,16 +50,16 @@ jobs:
         git checkout -B "$BRANCH"
         git add audits.toml
         git commit -m "Aggregate new audits"
-        git push --force origin "$BRANCH"
+        git push --force-with-lease origin "$BRANCH"
 
         # Update existing PR or create a new one
-        EXISTING_PR=$(gh pr list --head "$BRANCH" --json number --jq '.[0].number // empty')
+        EXISTING_PR=$(gh pr list --head "${GITHUB_REPOSITORY_OWNER}:$BRANCH" --json number --jq '.[0].number // empty')
         if [ -n "$EXISTING_PR" ]; then
           echo "Updated existing PR #$EXISTING_PR"
         else
           gh pr create \
             --base main \
-            --head "$BRANCH" \
+            --head "${GITHUB_REPOSITORY_OWNER}:$BRANCH" \
             --title "Aggregate new audits" \
             --body "Automated aggregation of cargo-vet audits from upstream repositories listed in \`sources.list\`."
         fi
