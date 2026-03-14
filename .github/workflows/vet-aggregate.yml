@@ -44,6 +44,9 @@ jobs:
           exit 0
         fi
 
+        # Fixed branch name so subsequent runs update the same PR
+        # rather than creating duplicates. The concurrency group above
+        # prevents overlapping runs.
         BRANCH="automated/vet-aggregate"
         git config user.name "github-actions[bot]"
         git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
