@@ -7,8 +7,13 @@ on:
     # Once a day at midnight UTC
     - cron:  '0 0 * * *'
 
+concurrency:
+  group: vet-aggregate
+  cancel-in-progress: false
+
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   aggregate:
@@ -30,11 +35,34 @@ jobs:
       run: cargo install --root ${{ runner.tool_cache }}/cargo-vet --version ${{ env.CARGO_VET_VERSION }} cargo-vet
     - name: Invoke cargo-vet aggregate
       run: cargo vet aggregate sources.list --output-file audits.toml
-    - name: Commit changes (if any)
+    - name: Create Pull Request
+      env:
+        GH_TOKEN: ${{ github.token }}
       run: |
-        git config --global user.name "cargo-vet[bot]"
-        git config --global user.email "cargo-vet-aggregate@invalid"
+        if git diff --quiet audits.toml; then
+          echo "No changes to audits.toml, skipping PR creation."
+          exit 0
+        fi
+
+        # Fixed branch name so subsequent runs update the same PR
+        # rather than creating duplicates. The concurrency group above
+        # prevents overlapping runs.
+        BRANCH="automated/vet-aggregate"
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git checkout -B "$BRANCH"
         git add audits.toml
-        git commit -m "Aggregate new audits" || true
-    - name: Push changes (if any)
-      run: git push origin main
+        git commit -m "Aggregate new audits"
+        git push --force-with-lease origin "$BRANCH"
+
+        # Update existing PR or create a new one
+        EXISTING_PR=$(gh pr list --head "${GITHUB_REPOSITORY_OWNER}:$BRANCH" --json number --jq '.[0].number // empty')
+        if [ -n "$EXISTING_PR" ]; then
+          echo "Updated existing PR #$EXISTING_PR"
+        else
+          gh pr create \
+            --base main \
+            --head "${GITHUB_REPOSITORY_OWNER}:$BRANCH" \
+            --title "Aggregate new audits" \
+            --body "Automated aggregation of cargo-vet audits from upstream repositories listed in \`sources.list\`."
+        fi
