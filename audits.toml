@@ -224,6 +224,13 @@ aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embed
 [[audits.embedded-batteries]]
 who = "matteotullo <matteotullo@microsoft.com>"
 criteria = "safe-to-deploy"
+version = "0.2.1"
+notes = "ODP crates are always trusted."
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.embedded-batteries]]
+who = "matteotullo <matteotullo@microsoft.com>"
+criteria = "safe-to-deploy"
 version = "0.3.1"
 notes = "ODP crates are always trusted."
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
@@ -257,6 +264,12 @@ aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embed
 
 [[audits.embedded-batteries-async]]
 who = "Matteo Tullo <matteotullo@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "0.3.0"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.embedded-batteries-async]]
+who = "matteotullo <matteotullo@microsoft.com>"
 criteria = "safe-to-deploy"
 version = "0.3.0"
 notes = "ODP crates are always trusted."
@@ -387,7 +400,11 @@ aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embed
 who = "Dylan Knutson <tcdknutson@gmail.com>"
 criteria = "safe-to-run"
 version = "0.3.2"
-notes = "PR discussion regarding safe-to-run status: https://github.com/OpenDevicePartnership/odp-secure-services/pull/43#discussion_r2849005190"
+notes = """
+Add any notes about your audit below this line:
+
+PR discussion regarding safe-to-run status: https://github.com/OpenDevicePartnership/odp-secure-services/pull/43#discussion_r2849005190
+"""
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/haf-ec-service/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.include_dir]]
