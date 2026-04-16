@@ -50,6 +50,7 @@ jobs:
         BRANCH="automated/vet-aggregate"
         git config user.name "github-actions[bot]"
         git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git fetch origin "$BRANCH" || true
         git checkout -B "$BRANCH"
         git add audits.toml
         git commit -m "Aggregate new audits"
