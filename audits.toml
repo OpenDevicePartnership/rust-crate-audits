@@ -348,6 +348,13 @@ criteria = "safe-to-run"
 version = "1.0.9"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml"
 
+[[audits.device-driver]]
+who = "Adam Sasine <asasine@users.noreply.github.com>"
+criteria = "safe-to-deploy"
+delta = "1.0.7 -> 1.0.9"
+notes = "Fixes compilation bugs for large registers but does not change invariants or testing strategy."
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
+
 [[audits.device-driver-generation]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
 criteria = "safe-to-deploy"
