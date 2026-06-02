@@ -913,6 +913,12 @@ version = "0.2.0"
 notes = "Trait-based MCU HAL with zero unsafe code. No build script or powerful imports. Pure trait design with optional chrono/defmt features. Ideal for embedded controllers."
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
 
+[[audits.embedded-mcu-hal]]
+who = "Felipe Balbi <febalbi@microsoft.com>"
+criteria = "safe-to-deploy"
+delta = "0.2.0 -> 0.3.0"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-mcu/refs/heads/main/supply-chain/audits.toml"
+
 [[audits.embedded-sensors-hal]]
 who = "Kurtis Dinelle <kdinelle@microsoft.com>"
 criteria = "safe-to-deploy"
