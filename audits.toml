@@ -322,6 +322,12 @@ aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/bq257
 [[audits.bitfield-struct]]
 who = "matteotullo <matteotullo@microsoft.com>"
 criteria = "safe-to-deploy"
+version = "0.10.1"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.bitfield-struct]]
+who = "matteotullo <matteotullo@microsoft.com>"
+criteria = "safe-to-deploy"
 delta = "0.10.1 -> 0.12.1"
 notes = "Adds hash and bitenum derives, mostly parsing and refactoring changes. No code execution nor writing to the filesystem."
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
@@ -331,6 +337,12 @@ who = "matteotullo <matteotullo@microsoft.com>"
 criteria = "safe-to-deploy"
 delta = "2.9.1 -> 2.9.4"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/bq25723/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.bitflags]]
+who = "matteotullo <matteotullo@microsoft.com>"
+criteria = "safe-to-deploy"
+delta = "2.9.1 -> 2.9.4"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.bitflags]]
 who = "Felipe Balbi <febalbi@microsoft.com>"
@@ -1342,6 +1354,12 @@ aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/bq257
 who = "matteotullo <matteotullo@microsoft.com>"
 criteria = "safe-to-deploy"
 version = "0.2.1"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.embedded-batteries]]
+who = "matteotullo <matteotullo@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "0.2.1"
 notes = "ODP crates are always trusted."
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
 
@@ -1384,6 +1402,12 @@ who = "matteotullo <matteotullo@microsoft.com>"
 criteria = "safe-to-deploy"
 version = "0.2.1"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/bq25723/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.embedded-batteries-async]]
+who = "matteotullo <matteotullo@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "0.2.1"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.embedded-batteries-async]]
 who = "Matteo Tullo <matteotullo@microsoft.com>"
@@ -2802,6 +2826,12 @@ aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/bq257
 who = "Jerry Xie <jerryxie@microsoft.com>"
 criteria = "safe-to-deploy"
 delta = "1.21.3 -> 1.21.4"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.once_cell]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+delta = "1.21.3 -> 1.21.4"
 notes = "Delta: soundness fix for OnceCell::wait under parking_lot feature. The wait() in imp_pl.rs now wraps parking_lot_core::park in a while loop re-checking COMPLETE state, preventing uninitialized memory observation when concurrent get_or_try_init panics. Remaining changes: doc cfg guards, doc typo fix, new tests. No new unsafe, no build script, no proc macros, no new imports. Assisted-by: copilot-chat:claude-opus-4.6"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
 
@@ -2906,6 +2936,12 @@ who = "Jerry Xie <jerryxie@microsoft.com>"
 criteria = "safe-to-run"
 delta = "0.2.16 -> 0.2.17"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/bq25723/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.pin-project-lite]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-run"
+delta = "0.2.16 -> 0.2.17"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.pin-project-lite]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
@@ -4739,6 +4775,12 @@ version = "0.59.0"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/bq25723/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.windows-sys]]
+who = "matteotullo <matteotullo@microsoft.com>"
+criteria = "safe-to-run"
+version = "0.59.0"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.windows-sys]]
 who = "Felipe Balbi <febalbi@microsoft.com>"
 criteria = "safe-to-run"
 version = "0.61.2"
@@ -5136,6 +5178,12 @@ delta = "0.8.25 -> 0.8.26"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/bq25723/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.zerocopy]]
+who = "matteotullo <matteotullo@microsoft.com>"
+criteria = "safe-to-deploy"
+delta = "0.8.25 -> 0.8.26"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.zerocopy]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
 criteria = "safe-to-deploy"
 delta = "0.8.27 -> 0.8.48"
@@ -5187,6 +5235,12 @@ who = "matteotullo <matteotullo@microsoft.com>"
 criteria = "safe-to-deploy"
 delta = "0.8.25 -> 0.8.26"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/bq25723/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.zerocopy-derive]]
+who = "matteotullo <matteotullo@microsoft.com>"
+criteria = "safe-to-deploy"
+delta = "0.8.25 -> 0.8.26"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.zerocopy-derive]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
@@ -5284,6 +5338,13 @@ criteria = "safe-to-deploy"
 user-id = 3618
 start = "2019-10-05"
 end = "2026-09-04"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
+
+[[trusted.anyhow]]
+criteria = "safe-to-deploy"
+user-id = 3618
+start = "2019-10-05"
+end = "2026-09-04"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/bq25723/refs/heads/main/supply-chain/audits.toml"
 
 [[trusted.anyhow]]
@@ -5305,6 +5366,13 @@ criteria = "safe-to-deploy"
 user-id = 55123
 start = "2025-05-06"
 end = "2027-03-13"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
+
+[[trusted.backtrace]]
+criteria = "safe-to-deploy"
+user-id = 55123
+start = "2025-05-06"
+end = "2027-03-13"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/bq25723/refs/heads/main/supply-chain/audits.toml"
 
 [[trusted.bitflags]]
@@ -5313,6 +5381,13 @@ user-id = 3204
 start = "2019-05-02"
 end = "2026-10-06"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/patina/refs/heads/main/supply-chain/audits.toml"
+
+[[trusted.bitflags]]
+criteria = "safe-to-deploy"
+user-id = 3204
+start = "2019-05-02"
+end = "2027-03-13"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
 
 [[trusted.bitflags]]
 criteria = "safe-to-deploy"
@@ -5341,6 +5416,13 @@ user-id = 55123
 start = "2022-10-29"
 end = "2027-05-16"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/tmp108/refs/heads/main/supply-chain/audits.toml"
+
+[[trusted.cfg-if]]
+criteria = "safe-to-deploy"
+user-id = 55123
+start = "2025-06-09"
+end = "2026-09-04"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
 
 [[trusted.cfg-if]]
 criteria = "safe-to-deploy"
@@ -5382,6 +5464,13 @@ criteria = "safe-to-deploy"
 user-id = 85562
 start = "2024-11-10"
 end = "2027-03-13"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
+
+[[trusted.dd-manifest-tree]]
+criteria = "safe-to-deploy"
+user-id = 85562
+start = "2024-11-10"
+end = "2027-03-13"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/bq25723/refs/heads/main/supply-chain/audits.toml"
 
 [[trusted.deranged]]
@@ -5396,6 +5485,13 @@ criteria = "safe-to-deploy"
 user-id = 85562
 start = "2020-09-28"
 end = "2027-03-13"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
+
+[[trusted.device-driver]]
+criteria = "safe-to-deploy"
+user-id = 85562
+start = "2020-09-28"
+end = "2027-03-13"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/bq25723/refs/heads/main/supply-chain/audits.toml"
 
 [[trusted.device-driver-generation]]
@@ -5403,7 +5499,21 @@ criteria = "safe-to-deploy"
 user-id = 85562
 start = "2024-01-07"
 end = "2027-03-13"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
+
+[[trusted.device-driver-generation]]
+criteria = "safe-to-deploy"
+user-id = 85562
+start = "2024-01-07"
+end = "2027-03-13"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/bq25723/refs/heads/main/supply-chain/audits.toml"
+
+[[trusted.device-driver-macros]]
+criteria = "safe-to-deploy"
+user-id = 85562
+start = "2024-01-07"
+end = "2027-03-13"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
 
 [[trusted.device-driver-macros]]
 criteria = "safe-to-deploy"
@@ -5459,6 +5569,13 @@ criteria = "safe-to-deploy"
 user-id = 3618
 start = "2019-05-02"
 end = "2027-03-13"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
+
+[[trusted.itoa]]
+criteria = "safe-to-deploy"
+user-id = 3618
+start = "2019-05-02"
+end = "2027-03-13"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/bq25723/refs/heads/main/supply-chain/audits.toml"
 
 [[trusted.js-sys]]
@@ -5474,6 +5591,13 @@ user-id = 55123
 start = "2024-08-15"
 end = "2026-09-03"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
+
+[[trusted.libc]]
+criteria = "safe-to-deploy"
+user-id = 55123
+start = "2024-08-15"
+end = "2026-09-04"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
 
 [[trusted.libc]]
 criteria = "safe-to-deploy"
@@ -5592,6 +5716,13 @@ criteria = "safe-to-deploy"
 user-id = 189
 start = "2019-07-07"
 end = "2027-03-13"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
+
+[[trusted.memchr]]
+criteria = "safe-to-deploy"
+user-id = 189
+start = "2019-07-07"
+end = "2027-03-13"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/bq25723/refs/heads/main/supply-chain/audits.toml"
 
 [[trusted.memchr]]
@@ -5635,6 +5766,13 @@ user-id = 539
 start = "2019-06-11"
 end = "2027-05-16"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/tmp108/refs/heads/main/supply-chain/audits.toml"
+
+[[trusted.object]]
+criteria = "safe-to-run"
+user-id = 4415
+start = "2019-04-26"
+end = "2027-03-13"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
 
 [[trusted.object]]
 criteria = "safe-to-run"
@@ -5697,6 +5835,13 @@ criteria = "safe-to-deploy"
 user-id = 3618
 start = "2022-01-04"
 end = "2027-03-13"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
+
+[[trusted.prettyplease]]
+criteria = "safe-to-deploy"
+user-id = 3618
+start = "2022-01-04"
+end = "2027-03-13"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/bq25723/refs/heads/main/supply-chain/audits.toml"
 
 [[trusted.prettyplease]]
@@ -5712,6 +5857,13 @@ user-id = 3618
 start = "2019-04-23"
 end = "2026-09-03"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
+
+[[trusted.proc-macro2]]
+criteria = "safe-to-deploy"
+user-id = 3618
+start = "2019-04-23"
+end = "2026-09-04"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
 
 [[trusted.proc-macro2]]
 criteria = "safe-to-deploy"
@@ -5747,6 +5899,13 @@ user-id = 3618
 start = "2019-04-09"
 end = "2026-10-06"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/patina/refs/heads/main/supply-chain/audits.toml"
+
+[[trusted.quote]]
+criteria = "safe-to-deploy"
+user-id = 3618
+start = "2019-04-09"
+end = "2027-03-13"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
 
 [[trusted.quote]]
 criteria = "safe-to-deploy"
@@ -5817,6 +5976,13 @@ user-id = 189
 start = "2019-03-30"
 end = "2027-04-07"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embassy-imxrt/refs/heads/main/supply-chain/audits.toml"
+
+[[trusted.rustc-demangle]]
+criteria = "safe-to-deploy"
+user-id = 55123
+start = "2023-03-23"
+end = "2026-09-04"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
 
 [[trusted.rustc-demangle]]
 criteria = "safe-to-deploy"
@@ -5963,6 +6129,13 @@ criteria = "safe-to-deploy"
 user-id = 3618
 start = "2019-02-28"
 end = "2027-03-13"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
+
+[[trusted.serde_json]]
+criteria = "safe-to-deploy"
+user-id = 3618
+start = "2019-02-28"
+end = "2027-03-13"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/bq25723/refs/heads/main/supply-chain/audits.toml"
 
 [[trusted.serde_json]]
@@ -6005,6 +6178,13 @@ criteria = "safe-to-deploy"
 user-id = 3618
 start = "2019-03-01"
 end = "2026-09-04"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
+
+[[trusted.syn]]
+criteria = "safe-to-deploy"
+user-id = 3618
+start = "2019-03-01"
+end = "2026-09-04"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/bq25723/refs/heads/main/supply-chain/audits.toml"
 
 [[trusted.syn]]
@@ -6033,6 +6213,13 @@ criteria = "safe-to-deploy"
 user-id = 3618
 start = "2019-10-09"
 end = "2026-09-04"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
+
+[[trusted.thiserror]]
+criteria = "safe-to-deploy"
+user-id = 3618
+start = "2019-10-09"
+end = "2026-09-04"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/bq25723/refs/heads/main/supply-chain/audits.toml"
 
 [[trusted.thiserror]]
@@ -6048,6 +6235,13 @@ user-id = 3618
 start = "2019-10-09"
 end = "2026-09-03"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
+
+[[trusted.thiserror-impl]]
+criteria = "safe-to-deploy"
+user-id = 3618
+start = "2019-10-09"
+end = "2026-09-04"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
 
 [[trusted.thiserror-impl]]
 criteria = "safe-to-deploy"
@@ -6153,6 +6347,13 @@ user-id = 3618
 start = "2021-10-02"
 end = "2026-11-07"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/mcxa-pac/refs/heads/main/supply-chain/audits.toml"
+
+[[trusted.unicode-ident]]
+criteria = "safe-to-deploy"
+user-id = 3618
+start = "2021-10-02"
+end = "2027-03-13"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
 
 [[trusted.unicode-ident]]
 criteria = "safe-to-deploy"
@@ -6628,6 +6829,13 @@ criteria = "safe-to-deploy"
 user-id = 6743
 start = "2023-02-22"
 end = "2027-03-13"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
+
+[[trusted.winnow]]
+criteria = "safe-to-deploy"
+user-id = 6743
+start = "2023-02-22"
+end = "2027-03-13"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/bq25723/refs/heads/main/supply-chain/audits.toml"
 
 [[trusted.zerocopy]]
@@ -6636,6 +6844,13 @@ user-id = 7178
 start = "2019-02-28"
 end = "2026-10-06"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/patina/refs/heads/main/supply-chain/audits.toml"
+
+[[trusted.zerocopy]]
+criteria = "safe-to-deploy"
+user-id = 7178
+start = "2019-02-28"
+end = "2027-03-13"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
 
 [[trusted.zerocopy]]
 criteria = "safe-to-deploy"
@@ -6656,7 +6871,21 @@ criteria = "safe-to-deploy"
 user-id = 7178
 start = "2019-02-28"
 end = "2027-03-13"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
+
+[[trusted.zerocopy-derive]]
+criteria = "safe-to-deploy"
+user-id = 7178
+start = "2019-02-28"
+end = "2027-03-13"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/bq25723/refs/heads/main/supply-chain/audits.toml"
+
+[[trusted.zmij]]
+criteria = "safe-to-deploy"
+user-id = 3618
+start = "2025-12-18"
+end = "2027-03-13"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/supply-chain/audits.toml"
 
 [[trusted.zmij]]
 criteria = "safe-to-deploy"
