@@ -1,5 +1,6 @@
-# This workflow runs daily to aggregate the audits from other repositories
-# in `sources.list` and updates the `audits.toml` file.
+# This workflow runs daily to discover new audit sources across the
+# OpenDevicePartnership organization, aggregate the audits from the
+# repositories in `sources.list`, and update the `audits.toml` file.
 name: vet-aggregate
 on:
   workflow_dispatch:
@@ -33,14 +34,56 @@ jobs:
       run: echo "${{ runner.tool_cache }}/cargo-vet/bin" >> $GITHUB_PATH
     - name: Ensure that the tool cache is populated with the cargo-vet binary
       run: cargo install --root ${{ runner.tool_cache }}/cargo-vet --version ${{ env.CARGO_VET_VERSION }} cargo-vet
+    - name: Discover new audit sources
+      env:
+        GH_TOKEN: ${{ github.token }}
+        ORG: ${{ github.repository_owner }}
+      run: |
+        set -euo pipefail
+
+        # List all public, non-archived, non-fork repositories in the org.
+        repos=$(gh api --paginate -X GET "orgs/$ORG/repos" \
+          -f type=public -f per_page=100 \
+          --jq '.[] | select(.archived == false and .fork == false) | .name')
+
+        added=0
+        for repo in $repos; do
+          branch=$(gh api "repos/$ORG/$repo" --jq '.default_branch' 2>/dev/null || true)
+          [ -n "$branch" ] || continue
+
+          # Find any `supply-chain/audits.toml` within the first five
+          # directory levels of the repository's default branch.
+          paths=$(gh api "repos/$ORG/$repo/git/trees/$branch?recursive=1" \
+            --jq '.tree[].path | select(test("(^|/)supply-chain/audits\\.toml$"))' \
+            2>/dev/null || true)
+
+          for path in $paths; do
+            # Skip paths nested deeper than five directory levels.
+            depth=$(echo "$path" | awk -F/ '{print NF}')
+            [ "$depth" -le 6 ] || continue
+
+            url="https://raw.githubusercontent.com/$ORG/$repo/refs/heads/$branch/$path"
+            if ! grep -qxF "$url" sources.list; then
+              echo "$url" >> sources.list
+              echo "Discovered new source: $url"
+              added=$((added + 1))
+            fi
+          done
+        done
+
+        # Keep the list deterministically ordered (case-insensitive) and
+        # free of duplicates.
+        LC_ALL=C sort -f -u sources.list -o sources.list
+
+        echo "Added $added new source(s)."
     - name: Invoke cargo-vet aggregate
       run: cargo vet aggregate sources.list --output-file audits.toml
     - name: Create Pull Request
       env:
         GH_TOKEN: ${{ github.token }}
       run: |
-        if git diff --quiet audits.toml; then
-          echo "No changes to audits.toml, skipping PR creation."
+        if git diff --quiet sources.list audits.toml; then
+          echo "No changes to sources.list or audits.toml, skipping PR creation."
           exit 0
         fi
 
@@ -52,7 +95,7 @@ jobs:
         git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git fetch origin "$BRANCH" || true
         git checkout -B "$BRANCH"
-        git add audits.toml
+        git add sources.list audits.toml
         git commit -m "Aggregate new audits"
         git push --force-with-lease origin "$BRANCH"
 
@@ -65,5 +108,5 @@ jobs:
             --base main \
             --head "${GITHUB_REPOSITORY_OWNER}:$BRANCH" \
             --title "Aggregate new audits" \
-            --body "Automated aggregation of cargo-vet audits from upstream repositories listed in \`sources.list\`."
+            --body "Automated discovery of new cargo-vet audit sources across the organization and aggregation of audits from the repositories listed in \`sources.list\`."
         fi
