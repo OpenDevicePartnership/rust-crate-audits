@@ -3,6 +3,8 @@ https://raw.githubusercontent.com/OpenDevicePartnership/bq25773/refs/heads/main/
 https://raw.githubusercontent.com/OpenDevicePartnership/bq40z50/refs/heads/main/supply-chain/audits.toml
 https://raw.githubusercontent.com/OpenDevicePartnership/bq41z50/refs/heads/main/supply-chain/audits.toml
 https://raw.githubusercontent.com/OpenDevicePartnership/embassy-imxrt/refs/heads/main/supply-chain/audits.toml
+https://raw.githubusercontent.com/OpenDevicePartnership/embassy-npcx/refs/heads/main/supply-chain/audits.toml
+https://raw.githubusercontent.com/OpenDevicePartnership/embedded-batteries/refs/heads/main/supply-chain/audits.toml
 https://raw.githubusercontent.com/OpenDevicePartnership/embedded-cfu/refs/heads/main/supply-chain/audits.toml
 https://raw.githubusercontent.com/OpenDevicePartnership/embedded-fans/refs/heads/main/supply-chain/audits.toml
 https://raw.githubusercontent.com/OpenDevicePartnership/embedded-keyboard-rs/refs/heads/main/supply-chain/audits.toml
@@ -17,7 +19,9 @@ https://raw.githubusercontent.com/OpenDevicePartnership/INA4230/refs/heads/main/
 https://raw.githubusercontent.com/OpenDevicePartnership/is31fl3743b/refs/heads/main/supply-chain/audits.toml
 https://raw.githubusercontent.com/OpenDevicePartnership/lis2dw12-i2c/refs/heads/main/supply-chain/audits.toml
 https://raw.githubusercontent.com/OpenDevicePartnership/mcxa-pac/refs/heads/main/supply-chain/audits.toml
+https://raw.githubusercontent.com/OpenDevicePartnership/mec17xx-pac/refs/heads/main/supply-chain/audits.toml
 https://raw.githubusercontent.com/OpenDevicePartnership/mimxrt600-fcb/refs/heads/main/supply-chain/audits.toml
+https://raw.githubusercontent.com/OpenDevicePartnership/mimxrt633s-pac/refs/heads/main/supply-chain/audits.toml
 https://raw.githubusercontent.com/OpenDevicePartnership/mimxrt685s-pac/refs/heads/main/supply-chain/audits.toml
 https://raw.githubusercontent.com/OpenDevicePartnership/npcx490m-pac/refs/heads/main/supply-chain/audits.toml
 https://raw.githubusercontent.com/OpenDevicePartnership/odp-embedded-controller/refs/heads/main/platform/dev-imxrt/supply-chain/audits.toml
@@ -28,6 +32,7 @@ https://raw.githubusercontent.com/OpenDevicePartnership/odp-platform-common/refs
 https://raw.githubusercontent.com/OpenDevicePartnership/odp-secure-services/refs/heads/main/supply-chain/audits.toml
 https://raw.githubusercontent.com/OpenDevicePartnership/odp-utilities/refs/heads/main/supply-chain/audits.toml
 https://raw.githubusercontent.com/OpenDevicePartnership/patina/refs/heads/main/supply-chain/audits.toml
+https://raw.githubusercontent.com/OpenDevicePartnership/pcal6416a/refs/heads/main/supply-chain/audits.toml
 https://raw.githubusercontent.com/OpenDevicePartnership/systemview-tracing/refs/heads/main/supply-chain/audits.toml
 https://raw.githubusercontent.com/OpenDevicePartnership/tmp108/refs/heads/main/supply-chain/audits.toml
 https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml
