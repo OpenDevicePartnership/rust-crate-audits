@@ -42,20 +42,30 @@ jobs:
         set -euo pipefail
 
         # List all public, non-archived, non-fork repositories in the org.
+        # The listing already includes each repo's default branch, so there
+        # is no need for an extra per-repo API call to fetch it.
         repos=$(gh api --paginate -X GET "orgs/$ORG/repos" \
           -f type=public -f per_page=100 \
-          --jq '.[] | select(.archived == false and .fork == false) | .name')
+          --jq '.[] | select(.archived == false and .fork == false) | "\(.name)\t\(.default_branch)"')
 
         added=0
-        for repo in $repos; do
-          branch=$(gh api "repos/$ORG/$repo" --jq '.default_branch' 2>/dev/null || true)
-          [ -n "$branch" ] || continue
+        while IFS=$'\t' read -r repo branch; do
+          [ -n "$repo" ] && [ -n "$branch" ] || continue
+
+          # URL-encode the branch so names containing "/" resolve as a single
+          # path segment in the git/trees endpoint instead of breaking the URL.
+          encoded_branch=$(jq -rn --arg b "$branch" '$b | @uri')
 
           # Find any `supply-chain/audits.toml` within the first five
-          # directory levels of the repository's default branch.
-          paths=$(gh api "repos/$ORG/$repo/git/trees/$branch?recursive=1" \
-            --jq '.tree[].path | select(test("(^|/)supply-chain/audits\\.toml$"))' \
-            2>/dev/null || true)
+          # directory levels of the repository's default branch. Surface a
+          # warning instead of silently skipping when the API call fails.
+          if ! tree=$(gh api "repos/$ORG/$repo/git/trees/$encoded_branch?recursive=1" 2>/dev/null); then
+            echo "::warning::Failed to list tree for $ORG/$repo@$branch; skipping" >&2
+            continue
+          fi
+
+          paths=$(echo "$tree" \
+            | jq -r '.tree[].path | select(test("(^|/)supply-chain/audits\\.toml$"))')
 
           for path in $paths; do
             # Skip paths nested deeper than five directory levels.
@@ -69,7 +79,7 @@ jobs:
               added=$((added + 1))
             fi
           done
-        done
+        done <<< "$repos"
 
         # Keep the list deterministically ordered (case-insensitive) and
         # free of duplicates.
