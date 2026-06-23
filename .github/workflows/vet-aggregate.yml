@@ -64,10 +64,21 @@ jobs:
             continue
           fi
 
+          # The trees API truncates results for very large repositories, which
+          # would silently drop audit sources. Surface a warning when that
+          # happens so the omission is visible.
+          if [ "$(echo "$tree" | jq -r '.truncated')" = "true" ]; then
+            echo "::warning::Tree listing for $ORG/$repo@$branch was truncated; some audit sources may be missed" >&2
+          fi
+
           paths=$(echo "$tree" \
             | jq -r '.tree[].path | select(test("(^|/)supply-chain/audits\\.toml$"))')
 
-          for path in $paths; do
+          # Iterate line-by-line to avoid word-splitting and glob expansion on
+          # paths that may legally contain whitespace or glob characters.
+          while IFS= read -r path; do
+            [ -n "$path" ] || continue
+
             # Skip paths nested deeper than five directory levels.
             depth=$(echo "$path" | awk -F/ '{print NF}')
             [ "$depth" -le 6 ] || continue
@@ -78,7 +89,7 @@ jobs:
               echo "Discovered new source: $url"
               added=$((added + 1))
             fi
-          done
+          done <<< "$paths"
         done <<< "$repos"
 
         # Keep the list deterministically ordered (case-insensitive) and
