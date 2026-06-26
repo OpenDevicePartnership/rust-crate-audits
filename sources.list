@@ -31,6 +31,7 @@ https://raw.githubusercontent.com/OpenDevicePartnership/odp-embedded-controller/
 https://raw.githubusercontent.com/OpenDevicePartnership/odp-platform-common/refs/heads/main/common/supply-chain/audits.toml
 https://raw.githubusercontent.com/OpenDevicePartnership/odp-secure-services/refs/heads/main/supply-chain/audits.toml
 https://raw.githubusercontent.com/OpenDevicePartnership/odp-utilities/refs/heads/main/supply-chain/audits.toml
+https://raw.githubusercontent.com/OpenDevicePartnership/odp-windows-drivers/refs/heads/main/supply-chain/audits.toml
 https://raw.githubusercontent.com/OpenDevicePartnership/patina/refs/heads/main/supply-chain/audits.toml
 https://raw.githubusercontent.com/OpenDevicePartnership/pcal6416a/refs/heads/main/supply-chain/audits.toml
 https://raw.githubusercontent.com/OpenDevicePartnership/systemview-tracing/refs/heads/main/supply-chain/audits.toml
