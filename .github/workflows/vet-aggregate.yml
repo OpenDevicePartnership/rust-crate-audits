@@ -131,3 +131,26 @@ jobs:
             --title "Aggregate new audits" \
             --body "Automated discovery of new cargo-vet audit sources across the organization and aggregation of audits from the repositories listed in \`sources.list\`."
         fi
+
+  notify-failure:
+    name: Notify Platform Maintainers
+    needs: aggregate
+    if: ${{ always() && needs.aggregate.result == 'failure' }}
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+    steps:
+    - name: Create failure issue
+      run: |
+        failure_date=$(date --utc +%F)
+        gh issue create \
+          --repo "$GITHUB_REPOSITORY" \
+          --title "vet-aggregate workflow failed on $failure_date" \
+          --body "@OpenDevicePartnership/odp-platform-maintainers
+
+        The scheduled vet-aggregate workflow failed and requires investigation.
+
+        Failed run: $RUN_URL"
