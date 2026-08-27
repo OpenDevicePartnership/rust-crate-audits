@@ -131,6 +131,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
 
+[[audits.annotate-snippets]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-run"
+version = "0.11.5"
+notes = "Full audit: no unsafe, no build.rs/proc-macros, no fs/net/process/env access; pure in-memory snippet rendering with anstyle/unicode-width/memchr. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
+
 [[audits.anstream]]
 who = "Robert Zieba <robertzieba@microsoft.com>"
 criteria = "safe-to-run"
@@ -148,6 +155,13 @@ aggregated-from = [
 
 [[audits.anstream]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "1.0.0"
+notes = "Full audit: ANSI stream adapters; no build script (build=false)/proc-macros, no fs/net/process/env; sole unsafe from_utf8_unchecked is sound (str-only callers, UTF-8-preserving parser, debug-checked). Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.anstream]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
 criteria = "safe-to-run"
 delta = "0.6.21 -> 1.0.0"
 notes = "Delta: version bump only. anstyle-parse dep bumped 0.2->1.0, clippy lint rename (empty_enum->empty_enums), removed string_to_string lint. No source code changes. Assisted-by: copilot:claude-opus-4.6"
@@ -162,6 +176,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml",
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
+
+[[audits.anstyle]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "1.0.14"
+notes = "Full audit: no_std ANSI styling types; no build script/proc-macros, no fs/net/process/env/FFI, zero runtime deps; single unsafe from_utf8_unchecked is sound (buffer only ever holds ASCII digits and valid static str). Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.anstyle]]
 who = "matteotullo <matteotullo@microsoft.com>"
@@ -212,6 +233,13 @@ aggregated-from = [
 
 [[audits.anstyle-parse]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "1.0.0"
+notes = "Full audit: no_std in-memory ANSI/VT escape parser; no build script/proc-macros, no fs/net/process/env. Three sound unsafe blocks: u8->State/Action transmutes guarded by 4-bit mask over repr(u8) enums with exactly 16 variants, and MaybeUninit osc-slice array pattern exposing only initialized prefix. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.anstyle-parse]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
 criteria = "safe-to-run"
 delta = "0.2.7 -> 1.0.0"
 notes = "Delta: version bump, dep version bumps, Cargo.toml field reordering, README URLs http to https, doc_auto_cfg to doc_cfg. No logic changes. Assisted-by: copilot:claude-opus-4.6"
@@ -228,6 +256,13 @@ aggregated-from = [
 ]
 
 [[audits.anstyle-query]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "1.1.5"
+notes = "Full audit: single sound unsafe block wrapping Windows GetConsoleMode/SetConsoleMode FFI (handles from std stdio, null-checked); no build script/proc-macros; only read-only std::env terminal-capability queries. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.anstyle-query]]
 who = "Robert Zieba <robertzieba@microsoft.com>"
 criteria = "safe-to-run"
 version = "1.1.5"
@@ -241,6 +276,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml",
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
+
+[[audits.anstyle-wincon]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "3.0.11"
+notes = "Full audit: Windows console color styling. Two unsafe FFI blocks (GetConsoleScreenBufferInfo/SetConsoleTextAttribute) sound: null-checked handles from live borrows, zeroed POD struct, checked returns; no build script, no proc-macros, no fs/net/process/env beyond windows-sys console FFI. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.anstyle-wincon]]
 who = "Robert Zieba <robertzieba@microsoft.com>"
@@ -263,6 +305,20 @@ criteria = "safe-to-deploy"
 version = "1.0.102"
 notes = "Full audit: vtable-based type-erased Error. All unsafe sound. deny(unsafe_op_in_unsafe_fn). build.rs does rustc feature probing only. Assisted-by: GitHub Copilot:claude-opus-4.6 cargo-vet"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/pcal6416a/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.anyhow]]
+who = "Dylan Knutson <tcdknutson@gmail.com>"
+criteria = "safe-to-deploy"
+delta = "1.0.102 -> 1.0.103"
+notes = "Delta audit 1.0.102->1.0.103: fixes RUSTSEC-2026-0190 (unsoundness in Error::downcast_mut). object_downcast/context_chain_downcast now read the target field through a raw pointer via ptr::addr_of! instead of forming an intermediate &ErrorImpl reference, avoiding aliasing UB with downcast_mut; NonNull::new_unchecked is sound as the pointer derives from a valid NonNull field. Adds a test_downcast_mut regression test. Remaining changes are version/html_root_url bumps and CI config. No new powerful imports, no ambient capabilities, no_std. Assisted-by: GitHub Copilot:claude-opus-4.8"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.anyhow]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+delta = "1.0.102 -> 1.0.103"
+notes = "Delta 1.0.102->1.0.103: refactors downcast unsafe code to use ptr::addr_of! field projection + NonNull/Ref::from_raw (soundness hardening, enables downcast_mut); no new deps, no new ambient capabilities, build.rs unchanged. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.aquamarine]]
 who = "Robert Zieba <robertzieba@microsoft.com>"
@@ -473,6 +529,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml",
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
+
+[[audits.backtrace]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-run"
+delta = "0.3.75 -> 0.3.76"
+notes = "Delta 0.3.75->0.3.76: dep bumps (cpp_demangle 0.5, object 0.37, addr2line 0.25, ruzstd 0.8, windows-targets->windows-link), no build script/proc-macros, no new fs/net/process/env. All unsafe changes are reductions/soundness fixes (safe static Mutex, object::pod parsing replaces transmute, MaybeUninit padding fix). Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.bare-metal]]
 who = "Felipe Balbi <felipe.balbi@microsoft.com>"
@@ -900,6 +963,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
 
+[[audits.bstr]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-run"
+delta = "1.12.1 -> 1.12.3"
+notes = "Delta 1.12.1->1.12.3: MSRV 1.73->1.65, optional serde->serde_core dep swap, doc/must_use attrs, and a safe ASCII-fast-path Chars::count() override; no new unsafe, no build script/proc-macros, no fs/net/process/env. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
+
 [[audits.bytemuck]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
 criteria = "safe-to-deploy"
@@ -950,6 +1020,27 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml",
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
+
+[[audits.camino]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-run"
+delta = "1.2.3 -> 1.2.4"
+notes = "Delta 1.2.3->1.2.4: adds Box<Path><->Box<Utf8Path> conversions + FromBoxedPathError; new unsafe Box::from_raw transmutes sound via repr(transparent), UTF-8 validated before Path->Utf8Path reinterpret; no build script/proc-macros, no new fs/net/process/env. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.cargo-platform]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-run"
+delta = "0.1.3 -> 0.3.1"
+notes = "Delta 0.1.3->0.3.1: pure cfg() parser/matcher changes (raw idents, true/false literals, keyword-deprecation warnings, edition 2024). No unsafe, no build.rs (build=false), no proc-macros, no fs/net/process/env in lib. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.cargo_metadata]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-run"
+delta = "0.15.3 -> 0.23.1"
+notes = "Delta 0.15.3->0.23.1: no unsafe, no build script, no proc macros; only expected std::process/std::env use to invoke 'cargo metadata'. New API (env_remove, newtype/enum wrappers) consistent with advertised purpose. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.cc]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
@@ -1280,6 +1371,55 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
 
+[[audits.clap]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+delta = "4.5.20 -> 4.6.1"
+notes = "Delta 4.5.20->4.6.1 is docs/examples/tutorials plus a new _concepts doc module and docsrs attr swap; forbid(unsafe_code) retained, no build.rs/proc-macros/fs/net/process additions. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.clap_builder]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+delta = "4.5.18 -> 4.5.20"
+notes = "Delta 4.5.18->4.5.20: doc/typo fixes, internal AppTag->AppExt rename, unstable-ext CommandExt API, dep bumps; no unsafe, build, or ambient capabilities. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.clap_builder]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+delta = "4.5.20 -> 4.6.0"
+notes = "Delta 4.5.20->4.6.0: doc reformatting, edition 2024/MSRV 1.85 + dep bumps, new default_values_if API, parser/validator refactor; forbid(unsafe_code) retained, no build script, no new fs/net/process. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.clap_derive]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "4.6.1"
+notes = "Full audit: clap Parser/Args/Subcommand/ValueEnum derive proc-macro; forbid(unsafe_code), no build.rs, no fs/net/process; only env reads are hard-coded CARGO_PKG_* metadata at expansion; generated code is plain clap builder calls. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.clap_lex]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "1.1.0"
+notes = "Full audit: minimal in-memory arg lexer; no build script/proc-macros, no fs/net/process/env; unsafe limited to sound OsStr as_encoded_bytes/from_encoded_bytes_unchecked at UTF-8 boundaries with valid callers. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.color-eyre]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-run"
+version = "0.6.5"
+notes = "Full audit: no unsafe, no build.rs/proc-macros, no net/process; only read-only fs access (source snippets) and read-only RUST_BACKTRACE/SPANTRACE env reads, consistent with advertised colorful error reporting. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.color-spantrace]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-run"
+version = "0.3.0"
+notes = "Full audit: no unsafe; build.rs only runs rustc --version for toolchain cfg; runtime fs reads are read-only source-snippet display gated by RUST_BACKTRACE; behavior matches advertised SpanTrace pretty-printer. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
+
 [[audits.colorchoice]]
 who = "Robert Zieba <robertzieba@microsoft.com>"
 criteria = "safe-to-run"
@@ -1294,6 +1434,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml",
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
+
+[[audits.colorchoice]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "1.0.5"
+notes = "Full audit: single-file no_std crate, no unsafe, no build script/proc-macros, zero deps, no fs/net/process/env; only core atomic state for global ColorChoice override. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.colorchoice]]
 who = "matteotullo <matteotullo@microsoft.com>"
@@ -1356,6 +1503,20 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml",
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
+
+[[audits.colored]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-run"
+delta = "2.0.4 -> 3.1.1"
+notes = "Delta 2.0.4->3.1.1: additive style trait impls + tests; swapped lazy_static/is_terminal for std LazyLock/IsTerminal; only unsafe is unchanged Windows console FFI; reads only color env vars; no build.rs/proc-macros/net/fs. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.comma]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-run"
+version = "1.0.0"
+notes = "Full audit: pure-Rust shell-style string tokenizer; no unsafe, no build.rs/proc-macros, no deps, only std iter/str imports, no fs/net/process/env access. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.const-init]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
@@ -1533,6 +1694,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/mcxa-pac/refs/heads/main/supply-chain/audits.toml",
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
+
+[[audits.crossbeam-utils]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-run"
+delta = "0.8.15 -> 0.8.14"
+notes = "Delta (downgrade): only CHANGELOG/version, build-script target-list data, a clippy lint attr, a park_timeout overflow-handling tweak, doc comment, and a test differ; no unsafe code, build-script logic, or fs/net/process/env changes. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.crunchy]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
@@ -1988,6 +2156,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
 
+[[audits.defmt]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+delta = "1.1.0 -> 1.1.1"
+notes = "Reviewed version/dependency metadata and UI diagnostic updates. Runtime implementation is unchanged; defmt-macros is pinned from 1.1.0 to separately audited 1.1.1. No unsafe or ambient capability changes."
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/bq25723/refs/heads/main/supply-chain/audits.toml"
+
 [[audits.defmt-macros]]
 who = "Felipe Balbi <felipe.balbi@microsoft.com>"
 criteria = "safe-to-deploy"
@@ -2289,6 +2464,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
 
+[[audits.defmt-macros]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+delta = "1.1.0 -> 1.1.1"
+notes = "Replaced proc-macro-error2 diagnostic handling with syn::Error across proc-macro parsing and error paths. Reviewed generated-code paths and dependency changes; no unsafe code or new filesystem, network, environment, or process capabilities were introduced."
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/bq25723/refs/heads/main/supply-chain/audits.toml"
+
 [[audits.defmt-parser]]
 who = "Felipe Balbi <felipe.balbi@microsoft.com>"
 criteria = "safe-to-deploy"
@@ -2478,6 +2660,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/embassy-imxrt/refs/heads/main/supply-chain/audits.toml",
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
+
+[[audits.defmt-rtt]]
+who = "Felipe Balbi <febalbi@microsoft.com>"
+criteria = "safe-to-deploy"
+delta = "1.0.0 -> 1.1.0"
+notes = "Adds a single public query function in_blocking_mode() that performs a relaxed atomic read of the SEGGER RTT up-channel flags bitfield. No new unsafe blocks, no new dependencies, no behavioural changes to existing APIs."
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embassy-imxrt/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.device-driver]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
@@ -4001,6 +4190,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
 
+[[audits.embedded-mcu-hal]]
+who = "Felipe Balbi <febalbi@microsoft.com>"
+criteria = "safe-to-deploy"
+delta = "0.2.0 -> 0.3.0"
+notes = "Adds two new trait-only modules: i2c::target (blocking + async target-side I2C traits, mirroring the embedded-hal controller-side shape with Request/ReadStatus/WriteStatus/Error/ErrorKind) and smbus::bus (async SMBus host trait with packet-error-checking). Both consist of trait definitions, plain enums, doc comments, and small blanket impl &mut T forwarding blocks. Minor adjustments to existing nvram/time/watchdog/lib.rs modules (no new behaviour). No new unsafe blocks. No new transitive dependencies. I authored the i2c::target module and reviewed the rest of this delta firsthand before publishing 0.3.0."
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embassy-imxrt/refs/heads/main/supply-chain/audits.toml"
+
 [[audits.embedded-sensors-hal]]
 who = "Kurtis Dinelle <kdinelle@microsoft.com>"
 criteria = "safe-to-deploy"
@@ -4376,6 +4572,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
 
+[[audits.eyre]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-run"
+version = "0.6.12"
+notes = "Full audit: no proc-macros; build.rs only probes rustc features (writes OUT_DIR, runs rustc); runtime has no fs/net/process/env; unsafe is sound anyhow-style repr(C) type-erasure vtable and TypeId-guarded Any downcasts. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
+
 [[audits.fastrand]]
 who = "Felipe Balbi <febalbi@microsoft.com>"
 criteria = "safe-to-run"
@@ -4723,6 +4926,12 @@ criteria = "safe-to-deploy"
 delta = "0.8.8 -> 0.8.9"
 notes = "Delta: adds aarch64 Windows platform support and tvOS/watchOS cfg. New unsafe in context_init and assembly follows existing x86_64 Windows patterns. No new dependencies or capabilities. Assisted-by: GitHub Copilot:claude-opus-4.6 cargo-vet"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embassy-npcx/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.generic-array]]
+who = "Billy Price <williamp@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "1.4.2"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.getrandom]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
@@ -5198,6 +5407,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
 
+[[audits.indenter]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-run"
+version = "0.3.4"
+notes = "Full audit: pure-safe-Rust fmt::Write indentation adapter; no unsafe, no build.rs/proc-macro, no deps, no fs/net/process/env access. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
+
 [[audits.indexmap]]
 who = "jerrysxie <jerryxie@microsoft.com>"
 criteria = "safe-to-deploy"
@@ -5316,6 +5532,13 @@ aggregated-from = [
 ]
 
 [[audits.is_terminal_polyfill]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "1.70.2"
+notes = "Full audit: trivial 58-line polyfill forwarding to std::io::IsTerminal; no unsafe, no build script (build=false), no proc-macros, no deps, no fs/net/process/env access. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.is_terminal_polyfill]]
 who = "Robert Zieba <robertzieba@microsoft.com>"
 criteria = "safe-to-run"
 version = "1.70.2"
@@ -5385,6 +5608,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml",
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
+
+[[audits.itertools]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+delta = "0.14.0 -> 0.15.0"
+notes = "Delta 0.14.0->0.15.0 adds array-combination & with_hasher adaptors, AllEqualValueError, strip_prefix, and formatting modernization; no unsafe, no build.rs/proc-macros, no fs/net/process/env or new runtime deps; pure iterator-adaptor behavior. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.itoa]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
@@ -5504,6 +5734,20 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
 
+[[audits.lazy-regex]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "3.6.0"
+notes = "Full audit: no unsafe, no build.rs, no fs/net/process/env. Macros validate patterns at compile time via regex::Regex::new and emit safe once_cell Lazy RegexBuilder code; remove.rs uses only safe slicing at regex match boundaries. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.lazy-regex-proc_macros]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "3.6.0"
+notes = "Full audit: no unsafe, no build script, no fs/net/process/env. Proc macro validates regex literals in-memory (regex::Regex::new) and emits predictable lazy-static regex builder code; user exprs passed through verbatim, no code injection. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
+
 [[audits.lazycell]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
 criteria = "safe-to-deploy"
@@ -5537,6 +5781,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/systemview-tracing/refs/heads/main/supply-chain/audits.toml",
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
+
+[[audits.levenshtein]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-run"
+version = "1.0.5"
+notes = "Full audit: single pure function computing Levenshtein edit distance; no unsafe, no build script, no deps, no fs/net/process/env access. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.libc]]
 who = "Robert Zieba <robertzieba@microsoft.com>"
@@ -5633,6 +5884,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/is31fl3743b/refs/heads/main/supply-chain/audits.toml",
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
+
+[[audits.libc]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-run"
+delta = "0.2.177 -> 0.2.186"
+notes = "Delta 0.2.177->0.2.186: bindings-only (constants, structs, externs) plus new src/new module tree; build.rs only reads env vars and emits cfgs; macros generate plain repr(C) bindings; no new deps, fs, net, or process access. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.libc]]
 who = "Billy Price <williamp@microsoft.com>"
@@ -5817,6 +6075,13 @@ criteria = "safe-to-deploy"
 delta = "0.4.29 -> 0.4.32"
 notes = "Delta 0.4.29->0.4.32: No new unsafe. Key type now distinguishes static vs borrowed strings; added Display-based ToValue for std::net types (no I/O); MSRV bump to 1.71; typo fixes. Assisted-by: GitHub Copilot:claude-opus-4.6 cargo-vet"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embassy-npcx/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.log]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+delta = "0.4.32 -> 0.4.33"
+notes = "Delta 0.4.32->0.4.33: key-comparison bugfix replacing derived Eq/Ord/Hash on MaybeStaticStr with content-based impls; no unsafe, no build/proc-macro, no new powerful imports. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.loom]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
@@ -6039,6 +6304,13 @@ delta = "2.7.6 -> 2.8.1"
 notes = "Delta 2.7.6->2.8.1: clippy cleanups, owned finder builder APIs (alloc-gated), big-endian aarch64 NEON movemask. New unsafe movemask variant is sound. No new dependencies or ambient capabilities. Assisted-by: GitHub Copilot:claude-opus-4.6 cargo-vet"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embassy-npcx/refs/heads/main/supply-chain/audits.toml"
 
+[[audits.memchr]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+delta = "2.8.1 -> 2.8.2"
+notes = "Delta 2.8.1->2.8.2: fixes pointer-arithmetic UB in packedpair search (out-of-bounds end.sub replaced with sound end.distance comparison), adds Miri regression test, minor into_owned move-vs-clone. No new deps/build scripts/imports. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
+
 [[audits.miette]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
 criteria = "safe-to-deploy"
@@ -6979,6 +7251,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml",
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
+
+[[audits.object]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-run"
+delta = "0.36.7 -> 0.36.5"
+notes = "Delta 0.36.7->0.36.5: removes Relr/M68k support, no_std core::error impl and a benign rustc-version-probe build.rs; only unsafe change is removing Relr POD impls (sound repr(C) pattern); no fs/net/process in lib. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.once_cell]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
@@ -7077,6 +7356,13 @@ aggregated-from = [
 ]
 
 [[audits.once_cell_polyfill]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "1.70.2"
+notes = "Full audit: ~54 LOC newtype wrapper forwarding to std::sync::OnceLock; no unsafe, no build.rs (build=false), no proc-macros, no deps, no fs/net/process/env/FFI. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.once_cell_polyfill]]
 who = "Robert Zieba <robertzieba@microsoft.com>"
 criteria = "safe-to-run"
 version = "1.70.2"
@@ -7090,6 +7376,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml",
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
+
+[[audits.owo-colors]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-run"
+version = "4.3.0"
+notes = "Full audit: forbid(unsafe_code), no unsafe/fs/net; build.rs only runs rustc --version for cfg detection; color detection delegated to optional supports-color dep. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.paste]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
@@ -7551,6 +7844,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml",
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
+
+[[audits.prettydiff]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-run"
+version = "0.9.0"
+notes = "Full audit: no unsafe, no build.rs/proc-macros, no fs/net/process/env access; pure LCS diff/pretty-print logic using std fmt/cmp + owo-colors/prettytable. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.prettyplease]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
@@ -8015,6 +8315,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
 
+[[audits.quote]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+delta = "1.0.45 -> 1.0.46"
+notes = "Delta 1.0.45->1.0.46: quote_spanned! macro refactor (single span eval) + import reordering; no unsafe, no build.rs/dep changes, no new ambient capabilities. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
+
 [[audits.r-efi]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
 criteria = "safe-to-run"
@@ -8219,6 +8526,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml",
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
+
+[[audits.regex]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+delta = "1.12.3 -> 1.12.4"
+notes = "Delta 1.12.3->1.12.4 is metadata-only (CHANGELOG, version bump, added benches/ to include, regex-syntax dep 0.8.5->0.8.11); no source, unsafe, build, or capability changes. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.regex-automata]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
@@ -8474,6 +8788,20 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
 
+[[audits.rustc-demangle]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-run"
+delta = "0.1.25 -> 0.1.26"
+notes = "Delta 0.1.25->0.1.26 adds v0 pattern-type demangling (print_pat, W tag) plus CHANGELOG/CI files; no unsafe, no build script, no fs/net/process/env access; behavior matches symbol-demangling purpose. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.rustc-demangle]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-run"
+delta = "0.1.26 -> 0.1.27"
+notes = "Delta 0.1.26->0.1.27: adds v0 demangling of trait-object assoc-const bindings plus a test; no unsafe, no build script/proc-macros, no fs/net/process/env. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
+
 [[audits.rustc-hash]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
 criteria = "safe-to-deploy"
@@ -8495,6 +8823,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/mcxa-pac/refs/heads/main/supply-chain/audits.toml",
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
+
+[[audits.rustfix]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-run"
+version = "0.8.7"
+notes = "Full audit: no unsafe, no build.rs/proc-macros, no fs/net/process/env access; purely in-memory string/byte replacement of rustc JSON suggestions, matches advertised purpose (rust-lang authored). Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.rustix]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
@@ -8715,6 +9050,13 @@ version = "1.0.149"
 notes = "Full audit: 12 unsafe blocks all sound (repr(transparent) transmutes, from_utf8_unchecked on validated data, WTF-8 encoding). build.rs reads cfg env vars only. Assisted-by: GitHub Copilot:claude-opus-4.6 cargo-vet"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/pcal6416a/refs/heads/main/supply-chain/audits.toml"
 
+[[audits.serde_json]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+delta = "1.0.149 -> 1.0.150"
+notes = "Delta 1.0.149->1.0.150: no unsafe/build/proc-macro/ambient-capability changes; hardens enum variant key parsing (issue979) plus cosmetic refactors and version bumps. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
+
 [[audits.serde_spanned]]
 who = "jerrysxie <jerryxie@microsoft.com>"
 criteria = "safe-to-deploy"
@@ -8746,6 +9088,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml",
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
+
+[[audits.serde_spanned]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+delta = "1.0.4 -> 1.1.1"
+notes = "Delta 1.0.4->1.1.1 is edition 2024 migration: manifest/edition/rust-version bumps, serde_core 1.0.225->1.0.228, one cosmetic import reorder; no logic, unsafe, build script, or new capabilities. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.shlex]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
@@ -8819,6 +9168,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml",
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
+
+[[audits.spanned]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-run"
+version = "0.4.1"
+notes = "Full audit: one sound unsafe offset_from over same-allocation bstr line subslices; no build script or proc macros; only read-only std::fs file reads consistent with span-tracking purpose; no net/process/env. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.ssmarshal]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
@@ -9856,6 +10212,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
 
+[[audits.syn]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+delta = "2.0.117 -> 2.0.118"
+notes = "Delta 2.0.117->2.0.118: no unsafe, no build.rs, no new ambient capabilities; src changes are doc comments, version bump, and a semantically-equivalent bool-literal parse refactor plus lint-allow additions; remaining changes tests/benches only. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
+
 [[audits.systemview-target]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
 criteria = "safe-to-deploy"
@@ -9953,6 +10316,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-regulator/refs/heads/main/supply-chain/audits.toml",
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
+
+[[audits.thiserror]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-run"
+delta = "1.0.68 -> 1.0.69"
+notes = "Delta 1.0.68->1.0.69: version bump only - html_root_url + Cargo.toml version/dep pin + one UI test; no unsafe, no build.rs change, no new fs/net/process/env. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.thiserror]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
@@ -10271,6 +10641,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-regulator/refs/heads/main/supply-chain/audits.toml",
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
+
+[[audits.thiserror-impl]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-run"
+delta = "1.0.68 -> 1.0.69"
+notes = "Delta 1.0.68->1.0.69: version bump plus one syn parser-progress fix in fmt.rs (consume unmatched TokenTree); no unsafe, no build script, no fs/net/process/env. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.thiserror-impl]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
@@ -10956,6 +11333,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
 
+[[audits.toml]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+delta = "0.8.23 -> 1.1.2+spec-1.1.0"
+notes = "Delta 0.8.23->1.1.2+spec-1.1.0: major rearchitecture to in-house toml_parser/toml_writer + no_std; forbid(unsafe_code), no build script/proc-macros, no fs/net/process/env; pure TOML parse/serialize. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
+
 [[audits.toml_datetime]]
 who = "jerrysxie <jerryxie@microsoft.com>"
 criteria = "safe-to-deploy"
@@ -10987,6 +11371,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml",
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
+
+[[audits.toml_datetime]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+delta = "0.7.5+spec-1.1.0 -> 1.1.1+spec-1.1.0"
+notes = "Delta: pure logic changes making Time::second/nanosecond optional plus edition/MSRV/dep-version bumps; no unsafe, no build script, no proc macros, no new powerful imports; bounds checks preserved. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.toml_datetime]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
@@ -11056,6 +11447,13 @@ aggregated-from = [
 
 [[audits.toml_parser]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "1.1.2+spec-1.1.0"
+notes = "Full audit: no_std TOML lexer/parser; no build script/proc-macros, no fs/net/process/env. forbid(unsafe_code) by default; all unsafe gated behind non-default unsafe feature with safe fallbacks and sound UTF-8-boundary get_unchecked/next_slice_unchecked. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.toml_parser]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
 criteria = "safe-to-run"
 version = "1.1.2+spec-1.1.0"
 notes = "Full audit of toml_parser 1.1.2+spec-1.1.0. Format-preserving TOML lexer/parser, no_std by default. No build script, no proc macros, no filesystem/network/process access, no FFI. All unsafe code is gated behind an opt-in 'unsafe' feature flag; by default the crate uses #![forbid(unsafe_code)]. When enabled, unsafe is limited to performance optimizations (get_unchecked, next_slice_unchecked on known-valid UTF-8 boundaries) with safe fallbacks. Dependencies: winnow (parser combinator, no_std); anstream/anstyle (optional, debug feature only). RecursionGuard prevents stack exhaustion from deeply nested input. Code matches advertised purpose. Assisted-by: GitHub Copilot:claude-opus-4.6"
@@ -11070,6 +11468,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml",
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
+
+[[audits.toml_writer]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+delta = "1.0.6+spec-1.1.0 -> 1.1.1+spec-1.1.0"
+notes = "Delta 1.0.6->1.1.1: metadata-only (edition 2024, MSRV 1.85, dev-dep + clippy-lint bumps); no source, unsafe, build-script, or runtime-dependency changes. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.tracing]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
@@ -11185,6 +11590,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/embassy-imxrt/refs/heads/main/supply-chain/audits.toml",
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
+
+[[audits.tracing-error]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-run"
+version = "0.2.1"
+notes = "Full audit: no build.rs/proc-macros, no fs/net/process/env access; unsafe limited to sound anyhow-style type-erasure vtable and standard Layer::downcast_raw. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.tracing-log]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
@@ -11269,6 +11681,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
 
+[[audits.typenum]]
+who = "Felipe Balbi <febalbi@microsoft.com>"
+criteria = "safe-to-deploy"
+delta = "1.20.0 -> 1.20.1"
+notes = "Macro hygiene fix: the recursive expansion of `tarr!` now uses `$crate::tarr![...]` instead of a naked `tarr![...]`, so the caller no longer needs `tarr` in scope. Plus a doc_root URL bump for the new version. No runtime behaviour changes."
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embassy-imxrt/refs/heads/main/supply-chain/audits.toml"
+
 [[audits.ufmt-write]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
 criteria = "safe-to-deploy"
@@ -11283,6 +11702,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-services/refs/heads/main/supply-chain/audits.toml",
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
+
+[[audits.ui_test]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-run"
+version = "0.30.7"
+notes = "Full audit: no build.rs/proc-macros, no network access; only unsafe is inside test-program string fixtures (not crate code). process/fs/env usage limited to invoking rustc/cargo and the harness's own test binaries and standard CARGO/RUSTC/GITHUB env vars - consistent with a UI test harness. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.unarray]]
 who = "Felipe Balbi <febalbi@microsoft.com>"
@@ -12759,6 +13185,13 @@ aggregated-from = [
 
 [[audits.winnow]]
 who = "Jerry Xie <jerryxie@microsoft.com>"
+criteria = "safe-to-deploy"
+delta = "0.7.15 -> 1.0.3"
+notes = "Delta 0.7.15->1.0.3: 1.0 API cleanup. No build script, no proc macros, no fs/net/process/env. Net unsafe reduction: two from_utf8_unchecked replaced with safe checked from_utf8. Behavior matches parser-combinator purpose. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.winnow]]
+who = "Jerry Xie <jerryxie@microsoft.com>"
 criteria = "safe-to-run"
 delta = "1.0.2 -> 1.0.3"
 notes = "Delta: removed 2 unsafe from_utf8_unchecked calls, replaced with safe from_utf8. Removed unnecessary AsBStr trait bounds from float parsers. Strict safety improvement. Assisted-by: copilot:claude-opus-4.6"
@@ -13358,6 +13791,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
 
+[[trusted.autocfg]]
+criteria = "safe-to-deploy"
+user-id = 539
+start = "2019-05-22"
+end = "2027-06-01"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embassy-imxrt/refs/heads/main/supply-chain/audits.toml"
+
 [[trusted.backtrace]]
 criteria = "safe-to-deploy"
 user-id = 55123
@@ -13494,6 +13934,20 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
 
+[[trusted.cc]]
+criteria = "safe-to-run"
+user-id = 55123
+start = "2022-10-29"
+end = "2027-06-01"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embassy-imxrt/refs/heads/main/supply-chain/audits.toml"
+
+[[trusted.cc]]
+criteria = "safe-to-run"
+trusted-publisher = "github:rust-lang/cc-rs"
+start = "2025-09-01"
+end = "2027-05-16"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/tmp108/refs/heads/main/supply-chain/audits.toml"
+
 [[trusted.cfg-if]]
 criteria = "safe-to-deploy"
 user-id = 55123
@@ -13799,13 +14253,6 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/tmp108/refs/heads/main/supply-chain/audits.toml",
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
-
-[[trusted.indoc]]
-criteria = "safe-to-deploy"
-user-id = 3618
-start = "2019-04-28"
-end = "2026-03-24"
-aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/patina/refs/heads/main/supply-chain/audits.toml"
 
 [[trusted.indoc]]
 criteria = "safe-to-deploy"
@@ -14113,6 +14560,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
 
+[[trusted.log]]
+criteria = "safe-to-deploy"
+user-id = 3204
+start = "2019-07-10"
+end = "2027-06-01"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embassy-imxrt/refs/heads/main/supply-chain/audits.toml"
+
 [[trusted.loom]]
 criteria = "safe-to-deploy"
 user-id = 6741
@@ -15388,6 +15842,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
 
+[[trusted.syn]]
+criteria = "safe-to-deploy"
+user-id = 3618
+start = "2019-03-01"
+end = "2027-06-01"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embassy-imxrt/refs/heads/main/supply-chain/audits.toml"
+
 [[trusted.termtree]]
 criteria = "safe-to-deploy"
 user-id = 6743
@@ -15473,6 +15934,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
 
+[[trusted.thiserror]]
+criteria = "safe-to-deploy"
+user-id = 3618
+start = "2019-10-09"
+end = "2027-06-01"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embassy-imxrt/refs/heads/main/supply-chain/audits.toml"
+
 [[trusted.thiserror-impl]]
 criteria = "safe-to-deploy"
 user-id = 3618
@@ -15540,6 +16008,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/patina/refs/heads/main/supply-chain/audits.toml",
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
+
+[[trusted.thiserror-impl]]
+criteria = "safe-to-deploy"
+user-id = 3618
+start = "2019-10-09"
+end = "2027-06-01"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embassy-imxrt/refs/heads/main/supply-chain/audits.toml"
 
 [[trusted.thread_local]]
 criteria = "safe-to-run"
@@ -17003,6 +17478,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
 
+[[trusted.zerocopy]]
+criteria = "safe-to-deploy"
+user-id = 7178
+start = "2019-02-28"
+end = "2027-06-01"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embassy-imxrt/refs/heads/main/supply-chain/audits.toml"
+
 [[trusted.zerocopy-derive]]
 criteria = "safe-to-deploy"
 user-id = 7178
@@ -17053,6 +17535,13 @@ aggregated-from = [
     "https://raw.githubusercontent.com/OpenDevicePartnership/bq25723/refs/heads/main/supply-chain/audits.toml",
     "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
 ]
+
+[[trusted.zerocopy-derive]]
+criteria = "safe-to-deploy"
+user-id = 7178
+start = "2019-02-28"
+end = "2027-06-01"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/embassy-imxrt/refs/heads/main/supply-chain/audits.toml"
 
 [[trusted.zmij]]
 criteria = "safe-to-deploy"
