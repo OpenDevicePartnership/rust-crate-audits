@@ -2,6 +2,8 @@ https://raw.githubusercontent.com/OpenDevicePartnership/bq25723/refs/heads/main/
 https://raw.githubusercontent.com/OpenDevicePartnership/bq25773/refs/heads/main/supply-chain/audits.toml
 https://raw.githubusercontent.com/OpenDevicePartnership/bq40z50/refs/heads/main/supply-chain/audits.toml
 https://raw.githubusercontent.com/OpenDevicePartnership/bq41z50/refs/heads/main/supply-chain/audits.toml
+https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml
+https://raw.githubusercontent.com/OpenDevicePartnership/crateplace/refs/heads/main/supply-chain/audits.toml
 https://raw.githubusercontent.com/OpenDevicePartnership/embassy-imxrt/refs/heads/main/supply-chain/audits.toml
 https://raw.githubusercontent.com/OpenDevicePartnership/embassy-npcx/refs/heads/main/supply-chain/audits.toml
 https://raw.githubusercontent.com/OpenDevicePartnership/embedded-batteries/refs/heads/main/supply-chain/audits.toml
@@ -31,7 +33,7 @@ https://raw.githubusercontent.com/OpenDevicePartnership/odp-embedded-controller/
 https://raw.githubusercontent.com/OpenDevicePartnership/odp-platform-common/refs/heads/main/common/supply-chain/audits.toml
 https://raw.githubusercontent.com/OpenDevicePartnership/odp-secure-services/refs/heads/main/supply-chain/audits.toml
 https://raw.githubusercontent.com/OpenDevicePartnership/odp-utilities/refs/heads/main/supply-chain/audits.toml
-https://raw.githubusercontent.com/OpenDevicePartnership/odp-windows-drivers/refs/heads/main/supply-chain/audits.toml
+https://raw.githubusercontent.com/OpenDevicePartnership/patina-components/refs/heads/main/supply-chain/audits.toml
 https://raw.githubusercontent.com/OpenDevicePartnership/patina/refs/heads/main/supply-chain/audits.toml
 https://raw.githubusercontent.com/OpenDevicePartnership/pcal6416a/refs/heads/main/supply-chain/audits.toml
 https://raw.githubusercontent.com/OpenDevicePartnership/systemview-tracing/refs/heads/main/supply-chain/audits.toml
