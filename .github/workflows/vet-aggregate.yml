@@ -21,7 +21,7 @@ jobs:
     name: Aggregate Dependencies
     runs-on: ubuntu-latest
     env:
-      CARGO_VET_VERSION: 0.10.1
+      CARGO_VET_VERSION: 0.10.2
     steps:
     - uses: actions/checkout@v4
     - name: Install Rust
