@@ -1038,6 +1038,16 @@ who = "Robert Zieba <robertzieba@microsoft.com>"
 criteria = "safe-to-deploy"
 version = "1.10.2"
 notes = "Changes support more types of structs and enums, no unsafe changes to the generated code."
+aggregated-from = [
+    "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
+    "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-usb-pd/refs/heads/main/supply-chain/audits.toml",
+]
+
+[[audits.bytemuck_derive]]
+who = "Robert Zieba <robertzieba@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "1.10.2"
+notes = "Changes support more types of structs and enums, no unsafe changes to the generated code."
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.camino]]
@@ -7511,6 +7521,16 @@ criteria = "safe-to-run"
 version = "4.3.0"
 notes = "Full audit: forbid(unsafe_code), no unsafe/fs/net; build.rs only runs rustc --version for cfg detection; color detection delegated to optional supports-color dep. Assisted-by: copilot-cli:claude-opus-4.8 cargo-vet"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/cga/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.pack1]]
+who = "Robert Zieba <robertzieba@microsoft.com>"
+criteria = "safe-to-deploy"
+version = "1.1.0"
+notes = "No unsafe code, only wrapper types around byte arrays, endianness conversion are handled by the built-in `from_*_bytes` functions."
+aggregated-from = [
+    "https://raw.githubusercontent.com/OpenDevicePartnership/tps6699x/refs/heads/main/supply-chain/audits.toml",
+    "https://raw.githubusercontent.com/OpenDevicePartnership/embedded-usb-pd/refs/heads/main/supply-chain/audits.toml",
+]
 
 [[audits.pack1]]
 who = "Robert Zieba <robertzieba@microsoft.com>"
