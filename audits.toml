@@ -14386,6 +14386,13 @@ start = "2020-09-28"
 end = "2027-03-13"
 aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/bq41z50/refs/heads/main/supply-chain/audits.toml"
 
+[[trusted.device-driver]]
+criteria = "safe-to-deploy"
+user-id = 85562
+start = "2020-09-28"
+end = "2027-09-23"
+aggregated-from = "https://raw.githubusercontent.com/OpenDevicePartnership/bq25773/refs/heads/main/supply-chain/audits.toml"
+
 [[trusted.device-driver-generation]]
 criteria = "safe-to-deploy"
 user-id = 85562
